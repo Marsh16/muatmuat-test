@@ -57,7 +57,7 @@ const SeeProductPage: React.FC = () => {
           <ProductCard
             key={product.id}
             product={product}
-            onClick={() => setSelectedProduct(product)}
+            products={products}
             reloadProjects={loadProducts}
           />
         ))}

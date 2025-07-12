@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import type { Product } from "../types";
 import ProductEditModal from "./ProductEditModal";
+import ProductDeleteModal from "./ProductDeleteModal";
 
 interface Props {
   product: Product;
-  onClick: () => void;
+  products: Product[];
   reloadProjects: () => void;
 }
 
-const ProductCard: React.FC<Props> = ({ product,onClick, reloadProjects }) => {
+const ProductCard: React.FC<Props> = ({
+  product,
+  products,
+  reloadProjects,
+}) => {
   const [isEdit, setIsEdit] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
   const handleEdit = () => {
     setIsEdit(true);
   };
+
   const handleDelete = () => {
-    // products.pop();
-    // reloadProjects();
-    // onClose();
+    setIsDelete(true);
   };
+
   return (
     <div className="justify-items-center shadow rounded-2xl p-3">
       <div>
@@ -53,10 +59,19 @@ const ProductCard: React.FC<Props> = ({ product,onClick, reloadProjects }) => {
         </div>
       </div>
 
-     {isEdit && (
+      {isEdit && (
         <ProductEditModal
           product={product}
           onClose={() => setIsEdit(false)}
+          reloadProjects={reloadProjects}
+        />
+      )}
+
+      {isDelete && (
+        <ProductDeleteModal
+          product={product}
+          products={products}
+          onClose={() => setIsDelete(false)}
           reloadProjects={reloadProjects}
         />
       )}
