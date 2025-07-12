@@ -21,7 +21,7 @@ const ProductAddModal: React.FC<Props> = ({ products,onClose, reloadProjects }) 
     if (name == "" || harga == 0 || stok == 0){
       setError("Nama, harga, stok Tidak Boleh Kosong!")
     }
-    else if (filteredOptions){
+    else if (filteredOptions.length > 0) {
       setError("nama Tidak Boleh sama!");
     }
     else if(harga < 0 || stok < 0){

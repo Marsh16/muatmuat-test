@@ -22,13 +22,15 @@ const ProductEditModal: React.FC<Props> = ({
   // edit products
   const handleEdit = () => {
     const filteredOptions = products.filter((prod) =>
-      name.toLowerCase().includes(prod.name.toLowerCase())
+      prod.name.toLowerCase().includes(name.toLowerCase())
     );
     if (name == "" || harga == 0 || stok == 0) {
       setError("Nama, harga, stok Tidak Boleh Kosong!");
-    } else if (filteredOptions) {
+    } 
+    else if (filteredOptions.length > 0) {
       setError("nama Tidak Boleh sama!");
-    } else if (harga < 0 || stok < 0) {
+    } 
+    else if (harga < 0 || stok < 0) {
       setError("harga, stok Tidak Boleh negatif!");
     } else {
       product.name = name;
