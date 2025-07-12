@@ -35,6 +35,6 @@ export const PRODUCTS: Product[] = [
     name: "Vacuum Cleaner 4",
     price: 600000,
     stock: 50,
-    image: "https://diyhardware.ph/cdn/shop/products/KYI0003.jpg?v=1595339788"
+    image: "https://s1.kaercher-media.com/mam/14285080/mainproduct/212162/d0.jpg"
   }
 ];

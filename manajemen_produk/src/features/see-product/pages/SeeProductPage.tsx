@@ -22,7 +22,7 @@ const SeeProductPage: React.FC = () => {
 
   useDebouncedEffect(() => {
     const filtered = products.filter(item =>
-			item.name.toLowerCase().includes(search.toLowerCase())
+			item.name.includes(search)
 		);
 		setProducts(filtered);
   }, [search], 300);
@@ -33,7 +33,7 @@ const SeeProductPage: React.FC = () => {
         products.filter(
           (option) =>
             option.name &&
-            option.name.toLowerCase().includes(search.toLowerCase())
+            option.name.includes(search)
         )
       );
     } else if (products) loadProducts();

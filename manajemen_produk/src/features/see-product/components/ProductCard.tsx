@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import type { Product } from "../types";
 import ProductEditModal from "./ProductEditModal";
 import ProductDeleteModal from "./ProductDeleteModal";
+import { formatCurrency } from "../../../utils/formatter";
 
 interface Props {
   product: Product;
@@ -34,7 +35,7 @@ const ProductCard: React.FC<Props> = ({
         <span className="text-gray-600 font-bold text-xl">{product.name}</span>
       </div>
       <div>
-        <span className="text-gray-600">{product.price}</span>
+        <span className="text-gray-600">{formatCurrency(product.price)}</span>
       </div>
       <div>
         <span className="text-gray-600">{product.stock}</span>
