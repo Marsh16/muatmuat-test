@@ -130,7 +130,7 @@ const SeeProductPage: React.FC = () => {
       {!isLoading && products.length === 0 && (
         <div className="text-center text-gray-500 py-8">No products yet</div>
       )}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2">
         {products.map((product) => (
           <ProductCard
             key={product.id}

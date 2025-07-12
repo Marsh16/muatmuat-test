@@ -27,7 +27,7 @@ const PokemonDetail: React.FC = () => {
       )}
       {error && <p className="text-red-600 text-sm">{error}</p>}
       <h3 className="text-xl font-bold mb-6 text-center">Pokemon</h3>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2">
         {data?.effect_entries.map((pokemon) => (
             <h6 className="border">{pokemon.effect}</h6>
         ))}

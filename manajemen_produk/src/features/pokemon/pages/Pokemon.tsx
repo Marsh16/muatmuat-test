@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import type { Pokemon } from "../types";
 
-const Pokemon: React.FC = () => {
+const PokemonList: React.FC = () => {
   const [data, setData] = useState<Pokemon>();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,7 +27,7 @@ const Pokemon: React.FC = () => {
       )}
       {error && <p className="text-red-600 text-sm">{error}</p>}
       <h3 className="text-xl font-bold mb-6 text-center">Pokemon</h3>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2">
         {data?.results.map((pokemon) => (
             <h6 className="border">{pokemon.name}</h6>
         ))}
@@ -36,4 +36,4 @@ const Pokemon: React.FC = () => {
   );
 };
 
-export default Pokemon;
+export default PokemonList;
