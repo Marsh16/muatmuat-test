@@ -82,7 +82,7 @@ const SeeProductPage: React.FC = () => {
 
       <div className="w-full p-3">
         <div className="flex px-4 py-3 rounded-md border-2 border-blue-500 overflow-hidden max-w-md mx-auto">
-          <button onClick={handleIsDrop}>Select Price</button>
+          <button onClick={handleIsDrop}>Select a Price</button>
         </div>
       </div>
 
@@ -137,6 +137,7 @@ const SeeProductPage: React.FC = () => {
             product={product}
             products={products}
             reloadProjects={loadProducts}
+            // onChange ={loadProducts}
           />
         ))}
       </div>

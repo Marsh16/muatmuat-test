@@ -29,7 +29,7 @@ const PokemonDetail: React.FC = () => {
       <h3 className="text-xl font-bold mb-6 text-center">Pokemon</h3>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 md:grid-cols-2">
         {data?.effect_entries.map((pokemon) => (
-            <h6 className="border">{pokemon.effect}</h6>
+            <h6 className="border">Effect: {pokemon.effect}</h6>
         ))}
       </div>
     </div>
