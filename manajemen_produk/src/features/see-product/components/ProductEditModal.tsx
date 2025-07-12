@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { Product } from "../types";
 
 interface Props {
-  products: Product[];
+  product: Product;
   onClose: () => void;
   reloadProjects: () => void;
 }
 
-const ProductAddModal: React.FC<Props> = ({ products,onClose, reloadProjects }) => {
-  const [name, setName] = useState("");
-  const [harga, setHarga] = useState(0);
-  const [stok, setStok] = useState(0);
+const ProductEditModal: React.FC<Props> = ({
+  product,
+  onClose,
+  reloadProjects,
+}) => {
+  const [name, setName] = useState(product.name);
+  const [harga, setHarga] = useState(product.price);
+  const [stok, setStok] = useState(product.stock);
 
-  // append products
-  const handleAdd = () => {
-    let newProduct = {} as Product;
-    newProduct.id = products.length + 1;
-    newProduct.name = name;
-    newProduct.price = harga;
-    newProduct.stock = stok;
-    newProduct.image = "https://s1.kaercher-media.com/images/pim/1098323_det_04502x502.jpg";
-    products.push(newProduct);
+  // edit products
+  const handleEdit = () => {
+    product.name = name;
+    product.price = harga;
+    product.stock = stok;
     reloadProjects();
     onClose();
   };
@@ -29,7 +29,7 @@ const ProductAddModal: React.FC<Props> = ({ products,onClose, reloadProjects }) 
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
         <div className="flex justify-between items-start mb-4">
-          <h3 className="text-xl font-bold">Tambahkan Product</h3>
+          <h3 className="text-xl font-bold">Ubah Product</h3>
           <button
             onClick={() => {
               onClose();
@@ -83,14 +83,14 @@ const ProductAddModal: React.FC<Props> = ({ products,onClose, reloadProjects }) 
           </div>
         </div>
         <button
-          onClick={handleAdd}
+          onClick={handleEdit}
           className="shadow p-3 rounded-xl hover:text-gray text-green font-medium text-sm text-center"
         >
-          Add New Product
+          Edit Product
         </button>
       </div>
     </div>
   );
 };
 
-export default ProductAddModal;
+export default ProductEditModal;

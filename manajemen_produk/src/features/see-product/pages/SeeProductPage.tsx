@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { PRODUCTS, type Product } from "../types";
-import ProductDetailsModal from "../components/ProductAddModal";
+import ProductAddModal from "../components/ProductAddModal";
 
 const SeeProductPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -52,18 +52,20 @@ const SeeProductPage: React.FC = () => {
       {!isLoading && PRODUCTS.length === 0 && (
         <div className="text-center text-gray-500 py-8">No products yet</div>
       )}
-      <div className="grid grid-cols-4 grid-flow-col gap-4">
+      <div className="grid grid-cols-4 gap-4">
         {PRODUCTS.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
             onClick={() => setSelectedProduct(product)}
+            reloadProjects={loadProducts}
           />
         ))}
       </div>
       {/* show modal */}
       {isAdd && (
-        <ProductDetailsModal
+        <ProductAddModal
+          products={products}
           onClose={() => setIsAdd(false)}
           reloadProjects={loadProducts}
         />

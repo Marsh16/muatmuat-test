@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Product } from "../types";
+import ProductEditModal from "./ProductEditModal";
 
 interface Props {
   product: Product;
   onClick: () => void;
+  reloadProjects: () => void;
 }
 
-const ProductCard: React.FC<Props> = ({ product, onClick }) => {
+const ProductCard: React.FC<Props> = ({ product,onClick, reloadProjects }) => {
+  const [isEdit, setIsEdit] = useState(false);
+
+  const handleEdit = () => {
+    setIsEdit(true);
+  };
+  const handleDelete = () => {
+    // products.pop();
+    // reloadProjects();
+    // onClose();
+  };
   return (
     <div className="justify-items-center shadow rounded-2xl p-3">
       <div>
@@ -24,7 +36,7 @@ const ProductCard: React.FC<Props> = ({ product, onClick }) => {
       <div className="grid grid-cols-2 gap-4">
         <div className="rounded bg-blue-400 px-3 text-center">
           <button
-            onClick={onClick}
+            onClick={handleEdit}
             className="text-white hover:text-gray font-medium text-sm"
           >
             Edit
@@ -33,13 +45,21 @@ const ProductCard: React.FC<Props> = ({ product, onClick }) => {
 
         <div className="rounded bg-red-400 px-3">
           <button
-            onClick={onClick}
+            onClick={handleDelete}
             className="text-white hover:text-gray font-medium text-sm"
           >
             Delete
           </button>
         </div>
       </div>
+
+     {isEdit && (
+        <ProductEditModal
+          product={product}
+          onClose={() => setIsEdit(false)}
+          reloadProjects={reloadProjects}
+        />
+      )}
     </div>
   );
 };
