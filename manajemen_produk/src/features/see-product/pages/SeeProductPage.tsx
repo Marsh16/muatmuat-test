@@ -9,6 +9,15 @@ const SeeProductPage: React.FC = () => {
   const [isAdd, setIsAdd] = useState(false);
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
+  const [isDrop, setIsDrop] = useState(false);
+
+  const handleIsDrop = () => {
+    if (isDrop) {
+      setIsDrop(false);
+    } else {
+      setIsDrop(true);
+    }
+  };
 
   useEffect(() => {
     if (search) {
@@ -73,35 +82,43 @@ const SeeProductPage: React.FC = () => {
 
       <div className="w-full p-3">
         <div className="flex px-4 py-3 rounded-md border-2 border-blue-500 overflow-hidden max-w-md mx-auto">
-          <ul>
-            {products.map((option) => (
-              <li
-                key={option.id}
-                className={`px-2 py-1 cursor-pointer hover:bg-blue-50`}
-                // onClick={() => onSelect(option.id)}
-              >
-                <div className="flex items-center">
-                  <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center mr-1 flex-shrink-0">
-                    <span className="font-bold text-gray-600 text-xs">
-                      {option.name.charAt(0)}
-                    </span>
-                  </div>
-                  <div className="truncate min-w-0">
-                    <div className="font-medium text-sm truncate">
-                      {option.name}
-                    </div>
-                    {option.price && (
-                      <div className="text-xs text-gray-500 truncate">
-                        {option.price}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <button onClick={handleIsDrop}>Select Price</button>
         </div>
       </div>
+
+      {isDrop && (
+        <div className="w-full p-3">
+          <div className="flex px-4 py-3 rounded-md border-2 border-blue-500 overflow-hidden max-w-md mx-auto">
+            <ul>
+              {products.map((option) => (
+                <li
+                  key={option.id}
+                  className={`px-2 py-1 cursor-pointer hover:bg-blue-50`}
+                  // onClick={() => onSelect(option.id)}
+                >
+                  <div className="flex items-center">
+                    <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center mr-1 flex-shrink-0">
+                      <span className="font-bold text-gray-600 text-xs">
+                        {option.name.charAt(0)}
+                      </span>
+                    </div>
+                    <div className="truncate min-w-0">
+                      <div className="font-medium text-sm truncate">
+                        {option.name}
+                      </div>
+                      {option.price && (
+                        <div className="text-xs text-gray-500 truncate">
+                          {option.price}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
 
       {/* When loading */}
       {isLoading && (
