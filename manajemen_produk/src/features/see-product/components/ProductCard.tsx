@@ -21,13 +21,24 @@ const ProductCard: React.FC<Props> = ({ product, onClick }) => {
       <div>
         <span className="text-gray-600">{product.stock}</span>
       </div>
-      <div className="rounded-2xl bg-[#3d9970] px-3">
-        <button
-          onClick={onClick}
-          className="text-white hover:text-gray font-medium text-sm"
-        >
-          Add To Cart
-        </button>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="rounded bg-blue-400 px-3 text-center">
+          <button
+            onClick={onClick}
+            className="text-white hover:text-gray font-medium text-sm"
+          >
+            Edit
+          </button>
+        </div>
+
+        <div className="rounded bg-red-400 px-3">
+          <button
+            onClick={onClick}
+            className="text-white hover:text-gray font-medium text-sm"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
