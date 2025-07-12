@@ -20,6 +20,13 @@ const SeeProductPage: React.FC = () => {
   };
 
   useEffect(() => {
+		const filtered = products.filter(item =>
+			item.name.toLowerCase().includes(search.toLowerCase())
+		);
+		setProducts(filtered);
+	}, [search]);
+
+  useEffect(() => {
     if (search) {
       setProducts(
         products.filter(
