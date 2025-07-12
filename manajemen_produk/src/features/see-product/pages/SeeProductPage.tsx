@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { PRODUCTS, type Product } from "../types";
 import ProductAddModal from "../components/ProductAddModal";
+import useDebouncedEffect from "../../../utils/useDebouncedEffect";
 
 const SeeProductPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,12 +20,12 @@ const SeeProductPage: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-		const filtered = products.filter(item =>
+  useDebouncedEffect(() => {
+    const filtered = products.filter(item =>
 			item.name.toLowerCase().includes(search.toLowerCase())
 		);
 		setProducts(filtered);
-	}, [search]);
+  }, [search], 300);
 
   useEffect(() => {
     if (search) {
