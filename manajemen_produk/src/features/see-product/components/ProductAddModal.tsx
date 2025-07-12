@@ -11,9 +11,23 @@ const ProductAddModal: React.FC<Props> = ({ products,onClose, reloadProjects }) 
   const [name, setName] = useState("");
   const [harga, setHarga] = useState(0);
   const [stok, setStok] = useState(0);
+  const [error, setError] = useState("");
 
   // append products
   const handleAdd = () => {
+    const filteredOptions = products.filter((prod) =>
+      name.toLowerCase().includes(prod.name.toLowerCase())
+    );
+    if (name == "" || harga == 0 || stok == 0){
+      setError("Nama, harga, stok Tidak Boleh Kosong!")
+    }
+    else if (filteredOptions){
+      setError("nama Tidak Boleh sama!");
+    }
+    else if(harga < 0 || stok < 0){
+      setError("harga, stok Tidak Boleh negatif!")
+    }
+    else{    
     let newProduct = {} as Product;
     newProduct.id = products.length + 1;
     newProduct.name = name;
@@ -22,9 +36,9 @@ const ProductAddModal: React.FC<Props> = ({ products,onClose, reloadProjects }) 
     newProduct.image = "https://s1.kaercher-media.com/images/pim/1098323_det_04502x502.jpg";
     products.push(newProduct);
     reloadProjects();
-    onClose();
+    onClose();}
   };
-
+  if (error) return <div className="text-red-500 p-6">{error}</div>;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">

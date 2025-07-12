@@ -3,28 +3,43 @@ import type { Product } from "../types";
 
 interface Props {
   product: Product;
+  products: Product[];
   onClose: () => void;
   reloadProjects: () => void;
 }
 
 const ProductEditModal: React.FC<Props> = ({
   product,
+  products,
   onClose,
   reloadProjects,
 }) => {
   const [name, setName] = useState(product.name);
   const [harga, setHarga] = useState(product.price);
   const [stok, setStok] = useState(product.stock);
+  const [error, setError] = useState("");
 
   // edit products
   const handleEdit = () => {
-    product.name = name;
-    product.price = harga;
-    product.stock = stok;
-    reloadProjects();
-    onClose();
+    const filteredOptions = products.filter((prod) =>
+      name.toLowerCase().includes(prod.name.toLowerCase())
+    );
+    if (name == "" || harga == 0 || stok == 0) {
+      setError("Nama, harga, stok Tidak Boleh Kosong!");
+    } else if (filteredOptions) {
+      setError("nama Tidak Boleh sama!");
+    } else if (harga < 0 || stok < 0) {
+      setError("harga, stok Tidak Boleh negatif!");
+    } else {
+      product.name = name;
+      product.price = harga;
+      product.stock = stok;
+      reloadProjects();
+      onClose();
+    }
   };
 
+  if (error) return <div className="text-red-500 p-6">{error}</div>;
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">

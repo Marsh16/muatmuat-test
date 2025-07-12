@@ -62,6 +62,7 @@ const ProductCard: React.FC<Props> = ({
       {isEdit && (
         <ProductEditModal
           product={product}
+          products={products}
           onClose={() => setIsEdit(false)}
           reloadProjects={reloadProjects}
         />
